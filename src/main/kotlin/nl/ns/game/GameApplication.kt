@@ -10,5 +10,5 @@ class GameApplication
 fun main(args: Array<String>) {
     runApplication<GameApplication>(*args)
     val gameApplication = GameLayoutCreatorService()
-    gameApplication.prepareGameLayout()
+    gameApplication.getCurrentGameLayout()
 }

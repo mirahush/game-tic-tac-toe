@@ -6,23 +6,28 @@ import nl.ns.game.domain.MarkType
 import org.springframework.stereotype.Service
 
 @Service
-class GameLayoutCreatorService {
+class GameLayoutCreatorService() {
 
     //TODO: Grid should be singleton
-    private var grid = prepareGameLayout()
+    private final var grid: Array<Array<MarkType>>
 
-    private var objectMapper =  JsonMapper()
+    private var objectMapper = JsonMapper()
 
-    fun prepareGameLayout(): Array<Array<MarkType>> {
+    init {
+        this.grid = prepareGameLayout()
+    }
+
+    private fun prepareGameLayout(): Array<Array<MarkType>> {
         val grid = Grid()
         return Array(grid.width) { Array(grid.height) { MarkType.EMPTY } }
     }
 
-    fun writeCurrentGameLayout(): String {
-        return objectMapper.writeValueAsString(grid)
-    }
+    fun getCurrentGameLayout(): Array<Array<MarkType>> = grid
 
-    fun printCurrentGameLayout() {
-        return print(objectMapper.writeValueAsString(grid))
+
+    fun printCurrentGameLayout(): String {
+        val gameLayout = objectMapper.writeValueAsString(this.getCurrentGameLayout())
+        println(gameLayout)
+        return gameLayout
     }
 }

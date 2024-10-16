@@ -15,7 +15,7 @@ class GameLayoutCreatorServiceTest {
     @Test
     fun `game initial layout can be created successfully`() {
         //WHEN
-        val gameLayout = gameLayoutCreatorService.prepareGameLayout()
+        val gameLayout = gameLayoutCreatorService.getCurrentGameLayout()
 
         //THEN
         assertThat(gameLayout).isNotNull
@@ -27,7 +27,7 @@ class GameLayoutCreatorServiceTest {
     @Test
     fun `print game layout successfully`() {
         //WHEN
-        val gameLayout = gameLayoutCreatorService.writeCurrentGameLayout()
+        val gameLayout = gameLayoutCreatorService.printCurrentGameLayout()
 
         //THEN
         assertThat(gameLayout).isEqualTo("[[\"EMPTY\",\"EMPTY\",\"EMPTY\"],[\"EMPTY\",\"EMPTY\",\"EMPTY\"],[\"EMPTY\",\"EMPTY\",\"EMPTY\"]]")
