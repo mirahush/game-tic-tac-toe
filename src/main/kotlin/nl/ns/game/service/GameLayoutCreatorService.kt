@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service
 @Service
 class GameLayoutCreatorService() {
 
-    //TODO: Grid should be singleton
     private final var grid: Array<Array<MarkType>>
 
     private var objectMapper = JsonMapper()
