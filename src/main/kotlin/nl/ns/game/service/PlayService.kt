@@ -9,7 +9,8 @@ class PlayService(var gameLayoutCreatorService : GameLayoutCreatorService) {
     fun makeAMove(player: Player) {
         var currentLayout = gameLayoutCreatorService.getCurrentGameLayout()
         //should make a change on the game layout
-        var afterMoveGameLayout = gameLayoutCreatorService.getCurrentGameLayout()
+        currentLayout[0][0] = player.playMark
+        //var afterMoveGameLayout = gameLayoutCreatorService.getCurrentGameLayout()
         gameLayoutCreatorService.printCurrentGameLayout()
     }
 }
