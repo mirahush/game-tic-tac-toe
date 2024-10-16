@@ -10,7 +10,6 @@ class PlayService(var gameLayoutCreatorService : GameLayoutCreatorService) {
         var currentLayout = gameLayoutCreatorService.getCurrentGameLayout()
         //should make a change on the game layout
         currentLayout[0][0] = player.playMark
-        //var afterMoveGameLayout = gameLayoutCreatorService.getCurrentGameLayout()
         gameLayoutCreatorService.printCurrentGameLayout()
     }
 }
