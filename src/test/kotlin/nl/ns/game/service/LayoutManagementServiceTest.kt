@@ -7,15 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest
-class GameLayoutCreatorServiceTest {
+class LayoutManagementServiceTest {
 
     @Autowired
-    lateinit var gameLayoutCreatorService: GameLayoutCreatorService
+    lateinit var layoutManagementService: LayoutManagementService
 
     @Test
     fun `game initial layout can be created successfully`() {
         //WHEN
-        val gameLayout = gameLayoutCreatorService.getCurrentGameLayout()
+        val gameLayout = layoutManagementService.getCurrentGameLayout()
 
         //THEN
         assertThat(gameLayout).isNotNull
@@ -27,7 +27,7 @@ class GameLayoutCreatorServiceTest {
     @Test
     fun `print game layout successfully`() {
         //WHEN
-        val gameLayout = gameLayoutCreatorService.printCurrentGameLayout()
+        val gameLayout = layoutManagementService.printCurrentGameLayout()
 
         //THEN
         assertThat(gameLayout).isEqualTo("[[\"EMPTY\",\"EMPTY\",\"EMPTY\"],[\"EMPTY\",\"EMPTY\",\"EMPTY\"],[\"EMPTY\",\"EMPTY\",\"EMPTY\"]]")

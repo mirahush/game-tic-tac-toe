@@ -15,12 +15,12 @@ class PlayServiceTest {
     private lateinit var playService: PlayService
 
     @Autowired
-    private lateinit var gameLayoutCreatorService: GameLayoutCreatorService
+    private lateinit var layoutManagementService: LayoutManagementService
 
     @Test
-    fun makeAMove() {
+    fun `should be able to find a correct move when there are still empty slots`() {
         //GIVEN
-        val countOfCirclesBeforeMove = gameLayoutCreatorService.getCurrentGameLayout()
+        val countOfCirclesBeforeMove = layoutManagementService.getCurrentGameLayout()
             .count { markTypes -> markTypes.any { it == MarkType.CIRCLE } }
 
 
@@ -29,7 +29,45 @@ class PlayServiceTest {
         playService.makeAMove(player)
 
         //THEN
-        val countOfCirclesAfterMove = gameLayoutCreatorService.getCurrentGameLayout()
+        val countOfCirclesAfterMove = layoutManagementService.getCurrentGameLayout()
+            .count { markTypes -> markTypes.any { it == MarkType.CIRCLE } }
+
+        assertThat(countOfCirclesAfterMove - countOfCirclesBeforeMove).isOne()
+
+    }
+
+    @Test
+    fun `should fill the slot with the player sign`() {
+        //GIVEN
+        val countOfCirclesBeforeMove = layoutManagementService.getCurrentGameLayout()
+            .count { markTypes -> markTypes.any { it == MarkType.CIRCLE } }
+
+
+        //WHEN
+        val player = CirclePlayer()
+        playService.makeAMove(player)
+
+        //THEN
+        val countOfCirclesAfterMove = layoutManagementService.getCurrentGameLayout()
+            .count { markTypes -> markTypes.any { it == MarkType.CIRCLE } }
+
+        assertThat(countOfCirclesAfterMove - countOfCirclesBeforeMove).isOne()
+
+    }
+
+    @Test
+    fun `should not override already signed slot`() {
+        //GIVEN
+        val countOfCirclesBeforeMove = layoutManagementService.getCurrentGameLayout()
+            .count { markTypes -> markTypes.any { it == MarkType.CIRCLE } }
+
+
+        //WHEN
+        val player = CirclePlayer()
+        playService.makeAMove(player)
+
+        //THEN
+        val countOfCirclesAfterMove = layoutManagementService.getCurrentGameLayout()
             .count { markTypes -> markTypes.any { it == MarkType.CIRCLE } }
 
         assertThat(countOfCirclesAfterMove - countOfCirclesBeforeMove).isOne()

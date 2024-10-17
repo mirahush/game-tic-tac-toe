@@ -6,7 +6,7 @@ import nl.ns.game.domain.MarkType
 import org.springframework.stereotype.Service
 
 @Service
-class GameLayoutCreatorService() {
+class LayoutManagementService {
 
     private final var grid: Array<Array<MarkType>>
 
@@ -28,5 +28,15 @@ class GameLayoutCreatorService() {
         val gameLayout = objectMapper.writeValueAsString(this.getCurrentGameLayout())
         println(gameLayout)
         return gameLayout
+    }
+
+    fun tryToUpdateLayout(sign: MarkType, slotAddress: Pair<Int, Int>): Boolean {
+        val proposedSlotContent = getCurrentGameLayout()[slotAddress.first][slotAddress.second]
+        if (proposedSlotContent != MarkType.EMPTY)
+            return false
+        else {
+            getCurrentGameLayout()[slotAddress.first][slotAddress.second] = sign
+            return true
+        }
     }
 }
