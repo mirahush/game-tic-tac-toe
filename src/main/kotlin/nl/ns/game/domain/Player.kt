@@ -1,5 +1,5 @@
 package nl.ns.game.domain
 
 abstract class Player {
-    abstract val playMark : MarkType
+    abstract val sign : SignType
 }

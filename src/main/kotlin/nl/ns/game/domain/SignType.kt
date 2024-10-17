@@ -1,6 +1,6 @@
 package nl.ns.game.domain
 
-enum class MarkType {
+enum class SignType {
     EMPTY,
     CROSS,
     CIRCLE

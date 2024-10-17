@@ -1,6 +1,6 @@
 package nl.ns.game.domain
 
 class CirclePlayer : Player() {
-    override val playMark: MarkType
-        get() = MarkType.CIRCLE
+    override val sign: SignType
+        get() = SignType.CIRCLE
 }

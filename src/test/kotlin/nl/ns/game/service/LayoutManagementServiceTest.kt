@@ -1,6 +1,6 @@
 package nl.ns.game.service
 
-import nl.ns.game.domain.MarkType
+import nl.ns.game.domain.SignType
 import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -19,9 +19,9 @@ class LayoutManagementServiceTest {
 
         //THEN
         assertThat(gameLayout).isNotNull
-        assertThat(gameLayout[0]).containsOnly(MarkType.EMPTY)
-        assertThat(gameLayout[1]).containsOnly(MarkType.EMPTY)
-        assertThat(gameLayout[2]).containsOnly(MarkType.EMPTY)
+        assertThat(gameLayout[0]).containsOnly(SignType.EMPTY)
+        assertThat(gameLayout[1]).containsOnly(SignType.EMPTY)
+        assertThat(gameLayout[2]).containsOnly(SignType.EMPTY)
     }
 
     @Test

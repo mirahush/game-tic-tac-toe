@@ -2,13 +2,13 @@ package nl.ns.game.service
 
 import com.fasterxml.jackson.databind.json.JsonMapper
 import nl.ns.game.domain.Grid
-import nl.ns.game.domain.MarkType
+import nl.ns.game.domain.SignType
 import org.springframework.stereotype.Service
 
 @Service
 class LayoutManagementService {
 
-    private final var grid: Array<Array<MarkType>>
+    private final var grid: Array<Array<SignType>>
 
     private var objectMapper = JsonMapper()
 
@@ -16,12 +16,12 @@ class LayoutManagementService {
         this.grid = prepareGameLayout()
     }
 
-    private fun prepareGameLayout(): Array<Array<MarkType>> {
+    private fun prepareGameLayout(): Array<Array<SignType>> {
         val grid = Grid()
-        return Array(grid.width) { Array(grid.height) { MarkType.EMPTY } }
+        return Array(grid.width) { Array(grid.height) { SignType.EMPTY } }
     }
 
-    fun getCurrentGameLayout(): Array<Array<MarkType>> = grid
+    fun getCurrentGameLayout(): Array<Array<SignType>> = grid
 
 
     fun printCurrentGameLayout(): String {
@@ -30,9 +30,9 @@ class LayoutManagementService {
         return gameLayout
     }
 
-    fun tryToUpdateLayout(sign: MarkType, slotAddress: Pair<Int, Int>): Boolean {
+    fun tryToSignTheSlot(sign: SignType, slotAddress: Pair<Int, Int>): Boolean {
         val proposedSlotContent = getCurrentGameLayout()[slotAddress.first][slotAddress.second]
-        if (proposedSlotContent != MarkType.EMPTY)
+        if (proposedSlotContent != SignType.EMPTY)
             return false
         else {
             getCurrentGameLayout()[slotAddress.first][slotAddress.second] = sign

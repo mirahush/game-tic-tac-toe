@@ -9,13 +9,11 @@ import kotlin.random.nextInt
 class PlayService(var gameLayoutCreatorService: LayoutManagementService) {
 
     fun makeAMove(player: Player) {
-        val currentLayout = gameLayoutCreatorService.getCurrentGameLayout()
         do {
-            val possibleNextMove = chooseNextMove()
-            val result = gameLayoutCreatorService.tryToUpdateLayout(player.playMark, possibleNextMove)
+            val possibleNexSlot = chooseNextMove()
+            val result = gameLayoutCreatorService.tryToSignTheSlot(player.sign, possibleNexSlot)
         } while (!result)
 
-        currentLayout[0][0] = player.playMark
         gameLayoutCreatorService.printCurrentGameLayout()
     }
 
