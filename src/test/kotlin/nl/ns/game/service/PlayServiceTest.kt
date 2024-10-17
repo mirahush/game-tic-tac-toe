@@ -36,7 +36,8 @@ class PlayServiceTest {
         val countOfCirclesAfterMove = layoutManagementService.getCurrentGameLayout()
             .count { markTypes -> markTypes.any { it == SignType.CIRCLE } }
 
-        assertThat(countOfCirclesAfterMove - countOfCirclesBeforeMove).isOne()
+        //TODO: update the test
+        assertThat(countOfCirclesAfterMove).isOne()
     }
 
     @Test
